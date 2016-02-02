@@ -59,9 +59,12 @@ namespace Strava.Authentication
         /// if the default port 1895 is already used on your machine.</param>
         public void GetTokenAsync(string clientId, string clientSecret, Scope scope, int callbackPort = 1895)
         {
-            LocalWebServer server = new LocalWebServer(string.Format("http://*:{0}/", callbackPort));
-            server.ClientId = clientId;
-            server.ClientSecret = clientSecret;
+            var uri = new Uri($"http://localhost:{callbackPort}/");
+            var server = new LocalWebServer(uri.ToString())
+            {
+                ClientId = clientId,
+                ClientSecret = clientSecret
+            };
 
             server.AccessTokenReceived += delegate(object sender, TokenReceivedEventArgs args)
             {
@@ -83,8 +86,8 @@ namespace Strava.Authentication
 
             server.Start();
 
-            string url = "https://www.strava.com/oauth/authorize";
-            string scopeLevel = string.Empty;
+            var url = "https://www.strava.com/oauth/authorize";
+            var scopeLevel = string.Empty;
 
             switch (scope)
             {
@@ -102,7 +105,7 @@ namespace Strava.Authentication
                     break;
             }
 
-            Process process = new Process();
+            var process = new Process();
             process.StartInfo = new ProcessStartInfo(string.Format("{0}?client_id={1}&response_type=code&redirect_uri=http://localhost:{2}&scope={3}&approval_prompt=auto", url, clientId, callbackPort, scopeLevel));
             process.Start();
         }

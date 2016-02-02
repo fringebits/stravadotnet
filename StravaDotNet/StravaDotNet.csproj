@@ -149,6 +149,16 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Utilities\Utilities.csproj">
+      <Project>{c80d6fd1-e534-4237-bcbc-5634e9cda13a}</Project>
+      <Name>Utilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\SimpleLogger\SimpleLogger\SimpleLogger.csproj">
+      <Project>{cf8c9230-cc66-43df-8070-01eb53978b5e}</Project>
+      <Name>SimpleLogger</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
