@@ -36,7 +36,7 @@ namespace Strava.Activities
         Crossfit,
         EBikeRide,
         Elliptical,
-        Iceskate,
+        IceSkate,
         InlineSkate,
         Kayaking,
         Kitesurf,
