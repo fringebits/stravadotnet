@@ -398,7 +398,7 @@ namespace Strava.Clients
             switch (parameter)
             {
                 case ActivityParameter.Commute:
-                    param = "name";
+                    param = "commute";
                     break;
                 case ActivityParameter.Description:
                     param = "description";
@@ -1117,7 +1117,7 @@ namespace Strava.Clients
             switch (parameter)
             {
                 case ActivityParameter.Commute:
-                    param = "name";
+                    param = "commute";
                     break;
                 case ActivityParameter.Description:
                     param = "description";
