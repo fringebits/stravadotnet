@@ -80,6 +80,26 @@ namespace Strava.Clients
 
             return Unmarshaller<List<AthleteSummary>>.Unmarshal(json);
         }
+        
+        /// <summary>
+        /// Gets the members of the specified club.
+        /// </summary>
+        /// <param name="clubId">The club's id.</param>
+        /// <param name="page">The page of the activities list.</param>
+        /// <param name="perPage">Specifies how many activities shpuld be shown per page.</param>
+        /// <returns>The club's members.</returns>
+        public async Task<List<AthleteSummary>> GetClubMembersAsync(string clubId, int page, int perPage)
+        {
+            string getUrl = string.Format("{0}/{1}/members?page={2}&per_page={3}access_token={4}", 
+                Endpoints.Club, 
+                clubId,
+                page,
+                perPage,
+                Authentication.AccessToken);
+            string json = await WebRequest.SendGetAsync(new Uri(getUrl));
+
+            return Unmarshaller<List<AthleteSummary>>.Unmarshal(json);
+        }
 
         /// <summary>
         /// Gets a list of the latest club activities.
@@ -171,6 +191,26 @@ namespace Strava.Clients
         public List<AthleteSummary> GetClubMembers(string clubId)
         {
             string getUrl = string.Format("{0}/{1}/members?access_token={2}", Endpoints.Club, clubId, Authentication.AccessToken);
+            string json = WebRequest.SendGet(new Uri(getUrl));
+
+            return Unmarshaller<List<AthleteSummary>>.Unmarshal(json);
+        }
+        
+        /// <summary>
+        /// Gets the members of the specified club.
+        /// </summary>
+        /// <param name="clubId">The club's id.</param>
+        /// <param name="page">The page of the activities list.</param>
+        /// <param name="perPage">Specifies how many activities shpuld be shown per page.</param>
+        /// <returns>The club's members.</returns>
+        public List<AthleteSummary> GetClubMembers(string clubId, int page, int perPage)
+        {
+            string getUrl = string.Format("{0}/{1}/members?page={2}&per_page={3}&access_token={4}", 
+                Endpoints.Club,
+                clubId,
+                page,
+                perPage,
+                Authentication.AccessToken);
             string json = WebRequest.SendGet(new Uri(getUrl));
 
             return Unmarshaller<List<AthleteSummary>>.Unmarshal(json);
