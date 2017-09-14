@@ -278,6 +278,19 @@ namespace Strava.Clients
         }
 
         /// <summary>
+        /// Retrieves the related activities of an activity asynchronously.
+        /// </summary>
+        /// <param name="activityId">The Strava activity Id.</param>
+        /// <returns>A list of activies.</returns>
+        public async Task<List<ActivitySummary>> GetRelatedActivitiesAsync(string activityId)
+        {
+            string getUrl = string.Format("{0}/{1}/related?access_token={2}", Endpoints.Activity, activityId, Authentication.AccessToken);
+            string json = await Http.WebRequest.SendGetAsync(new Uri(getUrl));
+
+            return Unmarshaller<List<ActivitySummary>>.Unmarshal(json);
+        }
+
+        /// <summary>
         /// Gets all the activities asynchronously. Pagination is supported.
         /// </summary>
         /// <param name="page">The page of activities.</param>
@@ -289,7 +302,7 @@ namespace Strava.Clients
             string json = await Http.WebRequest.SendGetAsync(new Uri(getUrl));
 
             return Unmarshaller<List<ActivitySummary>>.Unmarshal(json);
-        }
+        }        
 
         /// <summary>
         /// Gets the latest activities of the currently authenticated athletes followers asynchronously.
@@ -919,6 +932,19 @@ namespace Strava.Clients
             string json = Http.WebRequest.SendGet(new Uri(getUrl));
 
             return Unmarshaller<List<ActivityZone>>.Unmarshal(json);
+        }
+
+        /// <summary>
+        /// Retrieves the related activities of an activity.
+        /// </summary>
+        /// <param name="activityId">The Strava activity Id.</param>
+        /// <returns>A list of activies.</returns>
+        public List<ActivitySummary> GetRelatedActivities(string activityId)
+        {
+            string getUrl = string.Format("{0}/{1}/related?access_token={2}", Endpoints.Activity, activityId, Authentication.AccessToken);
+            string json = Http.WebRequest.SendGet(new Uri(getUrl));
+
+            return Unmarshaller<List<ActivitySummary>>.Unmarshal(json);
         }
 
         /// <summary>
