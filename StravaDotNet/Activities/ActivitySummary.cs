@@ -57,6 +57,14 @@ namespace Strava.Activities
         }
 
         /// <summary>
+        /// The type of the activity raw.
+        /// </summary>
+        public string RawType
+        {
+            get { return _type; }
+        }
+
+        /// <summary>
         /// The suffer score.
         /// </summary>
         [JsonProperty("suffer_score")]

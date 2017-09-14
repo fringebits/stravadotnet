@@ -94,7 +94,7 @@ namespace Strava.Clients
                 Endpoints.Club, 
                 clubId,
                 page,
-                perPage
+                perPage,
                 Authentication.AccessToken);
             string json = await WebRequest.SendGetAsync(new Uri(getUrl));
 
