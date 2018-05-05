@@ -1,4 +1,4 @@
-﻿#region Copyright (C) 2014 Sascha Simon
+﻿#region Copyright (C) 2014-2016 Sascha Simon
 
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -57,6 +57,14 @@ namespace Strava.Activities
         }
 
         /// <summary>
+        /// The type of the activity raw.
+        /// </summary>
+        public string RawType
+        {
+            get { return _type; }
+        }
+
+        /// <summary>
         /// The suffer score.
         /// </summary>
         [JsonProperty("suffer_score")]
@@ -92,6 +100,12 @@ namespace Strava.Activities
         /// </summary>
         [JsonProperty("elapsed_time")]
         public int ElapsedTime { get; set; }
+
+        /// <summary>
+        /// True if heartrate data is availbale. You can get the heartrate data using streams.
+        /// </summary>
+        [JsonProperty("has_heartrate")]
+        public bool HasHeartrate { get; set; }
 
         /// <summary>
         /// The total elevation gain in meters.

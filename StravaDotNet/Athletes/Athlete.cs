@@ -1,4 +1,4 @@
-﻿#region Copyright (C) 2014 Sascha Simon
+﻿#region Copyright (C) 2014-2016 Sascha Simon
 
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -41,6 +41,12 @@ namespace Strava.Athletes
         /// </summary>
         [JsonProperty("friend_count")]
         public int FriendCount { get; set; }
+
+        /// <summary>
+        /// The weight of the athlete.
+        /// </summary>
+        [JsonProperty("weight")]
+        public float? Weight { get; set; }
 
         /// <summary>
         /// The count of the athlete's friends that both this athlete and the currently authenticated athlete are following.

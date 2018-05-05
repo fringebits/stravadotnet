@@ -1,4 +1,4 @@
-﻿#region Copyright (C) 2014 Sascha Simon
+﻿#region Copyright (C) 2014-2016 Sascha Simon
 
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -87,7 +87,7 @@ namespace Strava.Activities
         }
 
         [JsonProperty("start_date")]
-        private string _start;
+        private string _start = null;
 
         /// <summary>
         /// The date and time when the lap was started.
