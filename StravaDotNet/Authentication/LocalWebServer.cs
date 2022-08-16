@@ -126,7 +126,7 @@ namespace Strava.Authentication
 
 
             // Getting the Access Token
-            string url = string.Format("https://www.strava.com/oauth/token?client_id={0}&client_secret={1}&code={2}", ClientId, ClientSecret, code);
+            string url = $"https://www.strava.com/oauth/token?client_id={ClientId}&client_secret={ClientSecret}&code={code}";
             string json = await Http.WebRequest.SendPostAsync(new Uri(url));
 
             AccessToken auth = Unmarshaller<AccessToken>.Unmarshal(json);

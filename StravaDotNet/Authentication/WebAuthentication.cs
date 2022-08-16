@@ -57,7 +57,7 @@ namespace Strava.Authentication
         /// <param name="scope">Define what your application is allowed to do.</param>
         /// <param name="callbackPort">Define the callback port (optional, default value is 1895). Only change this, 
         /// if the default port 1895 is already used on your machine.</param>
-        public void GetTokenAsync(string clientId, string clientSecret, Scope scope, int callbackPort = 1895)
+        public void GetTokenAsync(string clientId, string clientSecret, Scope scope, int callbackPort = 8080)
         {
             var uri = new Uri($"http://localhost:{callbackPort}/");
             var server = new LocalWebServer(uri.ToString())
@@ -87,26 +87,26 @@ namespace Strava.Authentication
             server.Start();
 
             var url = "https://www.strava.com/oauth/authorize";
-            var scopeLevel = string.Empty;
+            var scopeLevel = "read_all,activity:read_all,profile:read_all"; // might want "profile:write" rather than "read_all"
 
-            switch (scope)
-            {
-                case Scope.Full:
-                    scopeLevel = "view_private,write";
-                    break;
-                case Scope.Public:
-                    scopeLevel = "public";
-                    break;
-                case Scope.ViewPrivate:
-                    scopeLevel = "view_private";
-                    break;
-                case Scope.Write:
-                    scopeLevel = "write";
-                    break;
-            }
+            //switch (scope)
+            //{
+            //    case Scope.Full:
+            //        scopeLevel = "view_private,write";
+            //        break;
+            //    case Scope.Public:
+            //        scopeLevel = "public";
+            //        break;
+            //    case Scope.ViewPrivate:
+            //        scopeLevel = "view_private";
+            //        break;
+            //    case Scope.Write:
+            //        scopeLevel = "write";
+            //        break;
+            //}
 
             var process = new Process();
-            process.StartInfo = new ProcessStartInfo(string.Format("{0}?client_id={1}&response_type=code&redirect_uri=http://localhost:{2}&scope={3}&approval_prompt=auto", url, clientId, callbackPort, scopeLevel));
+            process.StartInfo = new ProcessStartInfo($"{url}?client_id={clientId}&response_type=code&redirect_uri=http://localhost:{callbackPort}&scope={scopeLevel}&approval_prompt=auto");
             process.Start();
         }
     }
