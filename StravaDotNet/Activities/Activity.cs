@@ -52,5 +52,11 @@ namespace Strava.Activities
         /// </summary>
         [JsonProperty("description")]
         public string Description { get; set; }
+
+        /// <summary>
+        /// The activity's description.
+        /// </summary>
+        [JsonProperty("private_note")]
+        public string PrivateNote { get; set; }
     }
 }

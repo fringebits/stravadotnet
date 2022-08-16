@@ -68,7 +68,7 @@ namespace Strava.Activities
         /// The suffer score.
         /// </summary>
         [JsonProperty("suffer_score")]
-        public int? SufferScore { get; set; }
+        public double? SufferScore { get; set; }
 
         /// <summary>
         /// The token used to embed a Strava activity in the form www.strava.com/activities/[activity_id]/embed/[embed_token].

@@ -50,6 +50,7 @@ namespace Strava.Activities
         StandUpPaddling,
         Surfing,
         VirtualRide,
+        VirtualRun,
         WeightTraining,
         Windsurf,
         Workout,
