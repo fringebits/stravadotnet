@@ -17,6 +17,10 @@
 
 #endregion
 
+// Updated list of activities, based on
+// https://support.strava.com/hc/en-us/articles/216919407-Supported-Sport-Types-on-Strava
+//
+
 namespace Strava.Activities
 {
     /// <summary>
@@ -24,36 +28,60 @@ namespace Strava.Activities
     /// </summary>
     public enum ActivityType
     {
-        Ride,
+        // Foot Sports
         Run,
-        Swim,
-        Hike,
+        TrailRun,
         Walk,
+        Hike,
+        VirtualRun,
+        //Cycle Sports
+        Ride,
+        MountainBikeRide,
+        GravelBikeRide,
+        EBikeRide,
+        EMountainBikeRide,
+        Velomobile,
+        VirtualRide,
+        //Water Sports
+        Canoe,
+        Kayak,
+        KitesurfSession,
+        Row,
+        StandUpPaddle,
+        Surf,
+        Swim,
+        WindsurfSession,
+        //Winter Sports
+        IceSkate,
         AlpineSki,
         BackcountrySki,
-        Canoeing,
-        CrossCountrySkiing,
-        Crossfit,
-        EBikeRide,
-        Elliptical,
-        IceSkate,
-        InlineSkate,
-        Kayaking,
-        Kitesurf,
         NordicSki,
-        RockClimbing,
-        RollerSki,
-        Rowing,
         Snowboard,
         Snowshoe,
+        //Other Sports
+        Golf,
+        Handcycle,
+        InlineSkate,
+        RockClimb,
+        RollerSki,
+        Wheelchair,
+        Crossfit,
+        Elliptical,
+        Sailing,
+        Skateboarding,
+        Soccer,
         StairStepper,
-        StandUpPaddling,
-        Surfing,
-        VirtualRide,
-        VirtualRun,
         WeightTraining,
-        Windsurf,
+        Yoga,
         Workout,
-        Yoga
+        Tennis,
+        Pickleball,
+        Racquetball,
+        Squash,
+        Badminton,
+        TableTennis,
+        HIIT,
+        Pilates,
+        VirtualRow,
     }
 }
