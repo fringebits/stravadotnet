@@ -147,16 +147,6 @@
     <Compile Include="Utilities\GoogleImageLoader.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Utilities\Utilities.csproj">
-      <Project>{c80d6fd1-e534-4237-bcbc-5634e9cda13a}</Project>
-      <Name>Utilities</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\SimpleLogger\SimpleLogger\SimpleLogger.csproj">
-      <Project>{cf8c9230-cc66-43df-8070-01eb53978b5e}</Project>
-      <Name>SimpleLogger</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
