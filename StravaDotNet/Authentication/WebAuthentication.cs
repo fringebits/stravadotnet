@@ -19,6 +19,7 @@
 
 using System;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 namespace Strava.Authentication
 {
@@ -66,7 +67,7 @@ namespace Strava.Authentication
                 ClientSecret = clientSecret
             };
 
-            server.AccessTokenReceived += delegate(object sender, TokenReceivedEventArgs args)
+            server.AccessTokenReceived += delegate (object sender, TokenReceivedEventArgs args)
             {
                 if (AccessTokenReceived != null)
                 {
@@ -75,7 +76,7 @@ namespace Strava.Authentication
                 }
             };
 
-            server.AuthCodeReceived += delegate(object sender, AuthCodeReceivedEventArgs args)
+            server.AuthCodeReceived += delegate (object sender, AuthCodeReceivedEventArgs args)
             {
                 if (AuthCodeReceived != null)
                 {
@@ -91,23 +92,45 @@ namespace Strava.Authentication
 
             switch (scope)
             {
-                case Scope.Full:
-                    scopeLevel = "view_private,write";
-                    break;
                 case Scope.Public:
-                    scopeLevel = "public";
+                    scopeLevel = "read";
                     break;
-                case Scope.ViewPrivate:
-                    scopeLevel = "view_private";
+                case Scope.ReadOnly:
+                    scopeLevel = "read_all,profile:read_all,activity:read_all";
                     break;
                 case Scope.Write:
-                    scopeLevel = "write";
+                    scopeLevel = "read_all,profile:write,activity:write";
                     break;
             }
 
             var process = new Process();
-            process.StartInfo = new ProcessStartInfo(string.Format("{0}?client_id={1}&response_type=code&redirect_uri=http://localhost:{2}&scope={3}&approval_prompt=auto", url, clientId, callbackPort, scopeLevel));
-            process.Start();
+            var fullUrl = string.Format("{0}?client_id={1}&response_type=code&redirect_uri=http://localhost:{2}&scope={3}&approval_prompt=auto", url, clientId, callbackPort, scopeLevel);
+            OpenUrl(fullUrl);
+            //process.StartInfo = new ProcessStartInfo(string.Format("{0}?client_id={1}&response_type=code&redirect_uri=http://localhost:{2}&scope={3}&approval_prompt=auto", url, clientId, callbackPort, scopeLevel));
+            //process.Start();
+        }
+
+        private static void OpenUrl(string url)
+        {
+            try
+            {
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                {
+                    Process.Start(new ProcessStartInfo("cmd", $"/c start {url}") { CreateNoWindow = true });
+                }
+                else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                {
+                    Process.Start("xdg-open", url);
+                }
+                else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                {
+                    Process.Start("open", url);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Could not open URL: {ex.Message}");
+            }
         }
     }
 }

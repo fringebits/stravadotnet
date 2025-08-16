@@ -28,17 +28,15 @@ namespace Strava.Authentication
         /// Only public data can be received.
         /// </summary>
         Public,
+
+        /// <summary>
+        /// Only private data can be received.
+        /// </summary>
+        ReadOnly,
+
         /// <summary>
         /// Data can be written. This scope is needed if you want to upload activities.
         /// </summary>
         Write,
-        /// <summary>
-        /// Only private data can be received.
-        /// </summary>
-        ViewPrivate,
-        /// <summary>
-        /// Private and public data can be received and write permissions are granted.
-        /// </summary>
-        Full
     }
 }
